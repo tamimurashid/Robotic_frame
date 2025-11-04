@@ -1,18 +1,23 @@
-#include <Arduino.h>
+#include "robot_core.h";
 
-// put function declarations here:
-int myFunction(int, int);
+#define RX 2
+#define TX 3
+#define bot_baud 115400
+#define motor1  1
+#define motor2  2
+#define motor3  3
+#define motor4  4
 
+
+
+Robotic_frame mybot(RX, TX, bot_baud);
 void setup() {
-  // put your setup code here, to run once:
-  int result = myFunction(2, 3);
+  mybot.setMotor(motor1, motor2,  motor3, motor4);
+  mybot.begin();
+ 
 }
 
 void loop() {
-  // put your main code here, to run repeatedly:
-}
+  
 
-// put function definitions here:
-int myFunction(int x, int y) {
-  return x + y;
 }
