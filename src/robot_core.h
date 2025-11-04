@@ -14,7 +14,10 @@ class Robotic_frame{
     private:
         uint8_t  RX, TX, botbaudRate, motor_1, motor_2, motor_3, motor_4;
         SoftwareSerial _botSerial;
-        AF_DCMotor  motor1, motor2, motor3, motor4;
+        AF_DCMotor  *motor1;  
+        AF_DCMotor  *motor2;
+        AF_DCMotor  *motor3;
+        AF_DCMotor  *motor4;
    
 
 
