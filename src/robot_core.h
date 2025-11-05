@@ -59,17 +59,33 @@ class Robotic_frame{
         AF_DCMotor  *motor2;
         AF_DCMotor  *motor3;
         AF_DCMotor  *motor4;
+
+        // --- L298N Motor Driver pins ---
+        uint8_t in1, in2, enA;
+        uint8_t in3, in4, enB;
    
 
 
     public:
         Robotic_frame(uint8_t _RX, uint8_t _TX, unsigned long  _botbaudRate);
+         
+
+        //----------- Setup -------------// 
 
         void begin();
+        void setMotorDriver(uint8_t type);// choose kind of motor driver .
 
-        void setMotorDriver(uint8_t type);
+
+         //-------- Adafruit motor(L293D MOTOR_SHIELD) Configuration ------------//
 
         void setMotor(uint8_t _motor_1, uint8_t _motor_2, uint8_t _motor_3, uint8_t _motor_4);
+
+
+        //---------- L298N_MOTOR  Configuration -------------//
+        void attachMotor(uint8_t _in1, uint8_t _in2, uint8_t _enA, uint8_t _in3, uint8_t _in4, uint8_t _enB);
+
+
+
 
         void forward(uint8_t _speed);
 
