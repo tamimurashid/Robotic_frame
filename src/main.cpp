@@ -18,6 +18,14 @@ void setup() {
 }
 
 void loop() {
+  
+  mybot.forward(255);
+  delay(1000);
+  mybot.backward(255);
+  delay(1000);
+  mybot.left(255);
+  delay(1000);
+  mybot.right(255);
 
   
   
