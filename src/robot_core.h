@@ -40,10 +40,14 @@
 #include <Arduino.h>
 #include <SoftwareSerial.h> 
 #include <AFMotor.h> // Library for adafruit motor driver 
-#define MOTOR_SHIELD 1
-#define L298N_MOTOR 2
+// #define MOTOR_SHIELD 1
+// #define L298N_MOTOR 2
 
 
+enum MotorDriverType{
+    MOTOR_SHIELD,
+    L298N_MOTOR 
+};
 
 class Robotic_frame{
     private:
@@ -52,7 +56,7 @@ class Robotic_frame{
         unsigned long  botbaudRate;
 
         SoftwareSerial _botSerial;
-        uint8_t motorDriverType;
+        MotorDriverType  motorDriverType;
 
 
         AF_DCMotor  *motor1;  // pointer for motor objects from 1 to 4
@@ -77,7 +81,10 @@ class Robotic_frame{
         //----------- Setup -------------// 
 
         void begin();
-        void setMotorDriver(uint8_t type);// choose kind of motor driver .
+
+        void setMotorDriver(MotorDriverType type){
+            motorDriverType = type;
+        } // choose kind of motor driver .
 
 
          //-------- Adafruit motor(L293D MOTOR_SHIELD) Configuration ------------//
@@ -97,6 +104,8 @@ class Robotic_frame{
         void left(uint8_t _speed);
 
         void right(uint8_t _speed);
+
+        void bt_control();
 
         void stop();
     
