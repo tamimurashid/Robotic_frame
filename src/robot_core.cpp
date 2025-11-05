@@ -25,4 +25,9 @@ void Robotic_frame::begin(){
    setMotor(motor_1, motor_2, motor_3, motor_4);
 }
 
+void Robotic_frame::forward(uint8_t _speed){
+    speed = _speed;
+
+}
+
 

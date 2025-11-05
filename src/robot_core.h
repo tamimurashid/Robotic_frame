@@ -29,6 +29,7 @@ class Robotic_frame{
         void forward(uint8_t _speed);
         void backward(uint8_t  _speed);
         void left(uint8_t _speed);
+        void right(uint8_t _speed);
     
 
    
