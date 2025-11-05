@@ -46,10 +46,10 @@ void Robotic_frame::setMotor(uint8_t _motor_1, uint8_t _motor_2, uint8_t _motor_
     motor_3 = _motor_3;
     motor_4 = _motor_4;
 
-    motor1 = new  AF_DCMotor(motor_1);
-    motor2 = new  AF_DCMotor(motor_2);
-    motor3 = new  AF_DCMotor(motor_3);
-    motor4 = new  AF_DCMotor(motor_4);
+   delete motor1; motor1 = new  AF_DCMotor(motor_1);
+   delete motor2; motor2 = new  AF_DCMotor(motor_2);
+   delete motor3; motor3 = new  AF_DCMotor(motor_3);
+   delete motor4; motor4 = new  AF_DCMotor(motor_4);
     
 }
 void Robotic_frame::attachMotor(uint8_t _in1, uint8_t _in2, uint8_t _enA, uint8_t _in3, uint8_t _in4, uint8_t _enB){
