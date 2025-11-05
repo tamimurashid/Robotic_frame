@@ -87,29 +87,55 @@ void Robotic_frame::begin(){
 void Robotic_frame::forward(uint8_t _speed){
     speed = _speed;
 
-    motor1 ->setSpeed(speed);
-    motor2 ->setSpeed(speed);
-    motor3 ->setSpeed(speed);
-    motor4 ->setSpeed(speed);
 
-    motor1 ->run(FORWARD);
-    motor2 ->run(FORWARD);
-    motor3 ->run(FORWARD);
-    motor4 ->run(FORWARD);
+    if(motorDriverType == MOTOR_SHIELD){
+        motor1 ->setSpeed(speed);
+        motor2 ->setSpeed(speed);
+        motor3 ->setSpeed(speed);
+        motor4 ->setSpeed(speed);
+
+        motor1 ->run(FORWARD);
+        motor2 ->run(FORWARD);
+        motor3 ->run(FORWARD);
+        motor4 ->run(FORWARD);
+
+    }else if(motorDriverType == L298N_MOTOR){
+        analogWrite(enA, speed);
+        analogWrite(enB, speed);
+        digitalWrite(in1, HIGH);
+        digitalWrite(in2, LOW);
+        digitalWrite(in3, HIGH);
+        digitalWrite(in4, LOW);
+
+    }
+    
 }
 
 void Robotic_frame::backward(uint8_t _speed){
     speed = _speed;
 
-    motor1 ->setSpeed(speed);
-    motor2 ->setSpeed(speed);
-    motor3 ->setSpeed(speed);
-    motor4 ->setSpeed(speed);
+    if(motorDriverType == MOTOR_SHIELD){
+        motor1 ->setSpeed(speed);
+        motor2 ->setSpeed(speed);
+        motor3 ->setSpeed(speed);
+        motor4 ->setSpeed(speed);
 
-    motor1 ->run(BACKWARD);
-    motor2 ->run(BACKWARD);
-    motor3 ->run(BACKWARD);
-    motor4 ->run(BACKWARD);
+        motor1 ->run(BACKWARD);
+        motor2 ->run(BACKWARD);
+        motor3 ->run(BACKWARD);
+        motor4 ->run(BACKWARD);
+
+    }else if(motorDriverType == L298N_MOTOR){
+        analogWrite(enA, speed);
+        analogWrite(enB, speed);
+        digitalWrite(in1, LOW);
+        digitalWrite(in2, HIGH);
+        digitalWrite(in3, LOW);
+        digitalWrite(in4, HIGH);
+
+    }
+
+    
 }
 
 void Robotic_frame::left(uint8_t _speed){
@@ -129,8 +155,8 @@ void Robotic_frame::left(uint8_t _speed){
     } else if(motorDriverType == L298N_MOTOR){
         analogWrite(enA, speed);
         analogWrite(enB, speed);
-        digitalWrite(in1, HIGH);
-        digitalWrite(in2, LOW);
+        digitalWrite(in1, LOW);
+        digitalWrite(in2, HIGH);
         digitalWrite(in3, HIGH);
         digitalWrite(in4, LOW);
     }
@@ -140,24 +166,45 @@ void Robotic_frame::left(uint8_t _speed){
 
 void Robotic_frame::right(uint8_t _speed){
     speed = _speed;
-    
-    motor1 ->setSpeed(speed);
-    motor2 ->setSpeed(speed);
-    motor3 ->setSpeed(speed);
-    motor4 ->setSpeed(speed);
 
-    motor1 ->run(BACKWARD);
-    motor2 ->run(BACKWARD);
-    motor3 ->run(FORWARD);
-    motor4 ->run(FORWARD);
+    if(motorDriverType == MOTOR_SHIELD){
+        motor1 ->setSpeed(speed);
+        motor2 ->setSpeed(speed);
+        motor3 ->setSpeed(speed);
+        motor4 ->setSpeed(speed);
+
+        motor1 ->run(BACKWARD);
+        motor2 ->run(BACKWARD);
+        motor3 ->run(FORWARD);
+        motor4 ->run(FORWARD);
+
+    } else if(motorDriverType == L298N_MOTOR){
+        analogWrite(enA, speed);
+        analogWrite(enB, speed);
+        digitalWrite(in1, HIGH);
+        digitalWrite(in2, LOW);
+        digitalWrite(in3, LOW);
+        digitalWrite(in4, HIGH);
+    }
+    
+ 
 }
 
 void Robotic_frame::stop(){
+    if(motorDriverType == MOTOR_SHIELD){
+        motor1 ->run(RELEASE);
+        motor2 ->run(RELEASE);
+        motor3 ->run(RELEASE);
+        motor4 ->run(RELEASE);
+    } else if(motorDriverType == L298N_MOTOR){
+        digitalWrite(in1, LOW);
+        digitalWrite(in2, LOW);
+        digitalWrite(in3, LOW);
+        digitalWrite(in4, LOW);
 
-    motor1 ->run(RELEASE);
-    motor2 ->run(RELEASE);
-    motor3 ->run(RELEASE);
-    motor4 ->run(RELEASE);
+    }
+
+    
 }
 
 
