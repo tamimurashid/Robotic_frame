@@ -1,4 +1,4 @@
-#include "robot_core.h";
+#include "robot_core.h"
 
 #define RX 2
 #define TX 3
@@ -10,7 +10,7 @@
 
 
 
-Robotic_frame mybot(RX, TX, bot_baud);
+Robotic_frame mybot(RX, TX, 115400);
 void setup() {
   mybot.setMotor(motor1, motor2,  motor3, motor4);
   mybot.begin();
