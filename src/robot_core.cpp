@@ -40,6 +40,21 @@
 Robotic_frame::Robotic_frame(uint8_t _RX, uint8_t _TX, unsigned long  _botbaudRate) : RX(_RX), TX(_TX), 
 botbaudRate(_botbaudRate), _botSerial(_RX, _TX), motor1(nullptr), motor2(nullptr), motor3(nullptr), motor4(nullptr){}
 
+
+Robotic_frame::~Robotic_frame() {
+    delete motor1;
+    delete motor2;
+    delete motor3;
+    delete motor4;
+
+    // Optional: set pointers to nullptr (safe practice)
+    motor1 = nullptr;
+    motor2 = nullptr;
+    motor3 = nullptr;
+    motor4 = nullptr;
+}
+
+
 void Robotic_frame::setMotor(uint8_t _motor_1, uint8_t _motor_2, uint8_t _motor_3, uint8_t _motor_4){
     motor_1 = _motor_1;
     motor_2 = _motor_2;

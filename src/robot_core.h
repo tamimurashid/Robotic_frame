@@ -68,6 +68,10 @@ class Robotic_frame{
 
     public:
         Robotic_frame(uint8_t _RX, uint8_t _TX, unsigned long  _botbaudRate);
+
+
+        // Destructor
+       ~Robotic_frame();
          
 
         //----------- Setup -------------// 
