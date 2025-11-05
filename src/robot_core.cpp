@@ -52,13 +52,36 @@ void Robotic_frame::setMotor(uint8_t _motor_1, uint8_t _motor_2, uint8_t _motor_
     motor4 = new  AF_DCMotor(motor_4);
     
 }
+void Robotic_frame::attachMotor(uint8_t _in1, uint8_t _in2, uint8_t _enA, uint8_t _in3, uint8_t _in4, uint8_t _enB){
+    in1 = _in1;
+    in2 = _in2;
+    in3 = _in3;
+    in4 = _in4;
+    enA = _enA;
+    enB = _enB;
 
+    pinMode(in1, OUTPUT);
+    pinMode(in2, OUTPUT);
+    pinMode(in3, OUTPUT);
+    pinMode(in4, OUTPUT);
+    pinMode(enA, OUTPUT);
+    pinMode(enB, OUTPUT);
+
+}
 
 void Robotic_frame::begin(){
 
    _botSerial.begin(botbaudRate);
 
-   setMotor(motor_1, motor_2, motor_3, motor_4);
+   if(motorDriverType == MOTOR_SHIELD){
+    setMotor(motor_1, motor_2, motor_3, motor_4);
+    
+   } else if (motorDriverType == L298N_MOTOR){
+    attachMotor(in1, in2, enA, in3, in4, enB);
+   }
+   
+
+   
 }
 
 void Robotic_frame::forward(uint8_t _speed){
@@ -92,20 +115,32 @@ void Robotic_frame::backward(uint8_t _speed){
 void Robotic_frame::left(uint8_t _speed){
     speed = _speed;
 
-    motor1 ->setSpeed(speed);
-    motor2 ->setSpeed(speed);
-    motor3 ->setSpeed(speed);
-    motor4 ->setSpeed(speed);
+    if(motorDriverType == MOTOR_SHIELD){
+        motor1 ->setSpeed(speed);
+        motor2 ->setSpeed(speed);
+        motor3 ->setSpeed(speed);
+        motor4 ->setSpeed(speed);
 
-    motor1 ->run(FORWARD);
-    motor2 ->run(FORWARD);
-    motor3 ->run(BACKWARD);
-    motor4 ->run(BACKWARD);
+        motor1 ->run(FORWARD);
+        motor2 ->run(FORWARD);
+        motor3 ->run(BACKWARD);
+        motor4 ->run(BACKWARD);
+
+    } else if(motorDriverType == L298N_MOTOR){
+        analogWrite(enA, speed);
+        analogWrite(enB, speed);
+        digitalWrite(in1, HIGH);
+        digitalWrite(in2, LOW);
+        digitalWrite(in3, HIGH);
+        digitalWrite(in4, LOW);
+    }
+
+    
 }
 
 void Robotic_frame::right(uint8_t _speed){
     speed = _speed;
-
+    
     motor1 ->setSpeed(speed);
     motor2 ->setSpeed(speed);
     motor3 ->setSpeed(speed);
@@ -118,7 +153,7 @@ void Robotic_frame::right(uint8_t _speed){
 }
 
 void Robotic_frame::stop(){
-    
+
     motor1 ->run(RELEASE);
     motor2 ->run(RELEASE);
     motor3 ->run(RELEASE);
