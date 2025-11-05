@@ -13,6 +13,7 @@
 class Robotic_frame{
     private:
         uint8_t  RX, TX, botbaudRate, motor_1, motor_2, motor_3, motor_4;
+        uint8_t speed;
         SoftwareSerial _botSerial;
         AF_DCMotor  *motor1;  
         AF_DCMotor  *motor2;
@@ -25,6 +26,9 @@ class Robotic_frame{
         Robotic_frame(uint8_t _RX, uint8_t _TX, uint8_t _botbaudRate);
         void begin();
         void setMotor(uint8_t _motor_1, uint8_t _motor_2, uint8_t _motor_3, uint8_t _motor_4);
+        void forward(uint8_t _speed);
+        void backward(uint8_t  _speed);
+        void left(uint8_t _speed);
     
 
    
