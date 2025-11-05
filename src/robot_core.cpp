@@ -67,4 +67,18 @@ void Robotic_frame::left(uint8_t _speed){
     motor4 ->run(BACKWARD);
 }
 
+void Robotic_frame::right(uint8_t _speed){
+    speed = _speed;
+
+    motor1 ->setSpeed(speed);
+    motor2 ->setSpeed(speed);
+    motor3 ->setSpeed(speed);
+    motor4 ->setSpeed(speed);
+
+    motor1 ->run(BACKWARD);
+    motor2 ->run(BACKWARD);
+    motor3 ->run(FORWARD);
+    motor4 ->run(FORWARD);
+}
+
 
