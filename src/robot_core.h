@@ -38,8 +38,8 @@
 #define ROBOT_FRAME_H
 
 #include <Arduino.h>
-#include <SoftwareSerial.h>
-#include <AFMotor.h>
+#include <SoftwareSerial.h> 
+#include <AFMotor.h> // Library for adafruit motor driver 
 
 
 
@@ -49,7 +49,7 @@ class Robotic_frame{
         uint8_t speed;
         unsigned long  botbaudRate;
         SoftwareSerial _botSerial;
-        AF_DCMotor  *motor1;  
+        AF_DCMotor  *motor1;  // pointer for motor objects from 1 to 4
         AF_DCMotor  *motor2;
         AF_DCMotor  *motor3;
         AF_DCMotor  *motor4;

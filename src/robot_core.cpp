@@ -33,10 +33,12 @@
  *   into a full framework to support advanced robotic architectures.
  * - Contributions and extensions are welcome under the MIT License.
  */
+
+
 #include "robot_core.h"
 
-Robotic_frame::Robotic_frame(uint8_t _RX, uint8_t _TX, unsigned long  _botbaudRate) : RX(_RX), TX(_TX), botbaudRate(_botbaudRate),
-_botSerial(_RX, _TX), motor1(nullptr), motor2(nullptr), motor3(nullptr), motor4(nullptr){}
+Robotic_frame::Robotic_frame(uint8_t _RX, uint8_t _TX, unsigned long  _botbaudRate) : RX(_RX), TX(_TX), 
+botbaudRate(_botbaudRate), _botSerial(_RX, _TX), motor1(nullptr), motor2(nullptr), motor3(nullptr), motor4(nullptr){}
 
 void Robotic_frame::setMotor(uint8_t _motor_1, uint8_t _motor_2, uint8_t _motor_3, uint8_t _motor_4){
     motor_1 = _motor_1;
@@ -53,7 +55,6 @@ void Robotic_frame::setMotor(uint8_t _motor_1, uint8_t _motor_2, uint8_t _motor_
 
 
 void Robotic_frame::begin(){
-
 
    _botSerial.begin(botbaudRate);
 
