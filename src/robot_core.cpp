@@ -118,6 +118,7 @@ void Robotic_frame::right(uint8_t _speed){
 }
 
 void Robotic_frame::stop(){
+    
     motor1 ->run(RELEASE);
     motor2 ->run(RELEASE);
     motor3 ->run(RELEASE);
