@@ -44,6 +44,8 @@
 #define motor4  4
 #define speed1 9
 #define speed2 10
+#define frontlight 11
+#define backlight 12
 
 
 
@@ -51,6 +53,8 @@ Robotic_frame mybot(RX, TX, 115200);
 void setup() {
   
   Serial.begin(9600);
+  mybot.setFrontlight(frontlight);
+  mybot.setBacklight(backlight);
   mybot.setMotorDriver(L298N_MOTOR);
   mybot.attachMotor(motor1, motor2, speed1, motor3, motor4, speed2);
   mybot.begin();
