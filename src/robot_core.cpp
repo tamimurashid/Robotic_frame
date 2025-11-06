@@ -360,6 +360,17 @@ void Robotic_frame::frontlight_off(){
     digitalWrite(_frontled, LOW);
 }
 
+void Robotic_frame::backlight_off(){
+    
+    digitalWrite(_backled, HIGH);
+}
+
+void Robotic_frame::backlight_on(){
+
+    digitalWrite(_backled, LOW);
+}
+
+
 void Robotic_frame::bt_control(){
     if(_botSerial.available()){
         command = _botSerial.read();
