@@ -51,7 +51,7 @@ enum MotorDriverType{
 
 class Robotic_frame{
     private:
-        uint8_t  RX, TX, motor_1, motor_2, motor_3, motor_4, _buzzerpin;
+        uint8_t  RX, TX, motor_1, motor_2, motor_3, motor_4, _buzzerpin, _frontled, _backled;
         uint8_t speed = 255; // set speed to maximum if in motor driver L298N enA and enB is not used incase 
         unsigned long  botbaudRate;
 
@@ -117,6 +117,10 @@ class Robotic_frame{
 
         void horn(uint8_t buzzerpin);
         void no_horn();
+
+        void frontlight(uint8_t frontled);
+
+        void backlight(uint8_t backled);
 
         void stop();
         char command;
