@@ -132,6 +132,7 @@ class Robotic_frame{
         void backlight_off();
 
         void stop();
+        
         char command;
     
 
