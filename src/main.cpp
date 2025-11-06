@@ -49,6 +49,7 @@
 
 Robotic_frame mybot(RX, TX, 115200);
 void setup() {
+  Serial.begin(9600);
   mybot.setMotorDriver(L298N_MOTOR);
   mybot.attachMotor(motor1, motor2, speed1, motor3, motor4, speed2);
   mybot.begin();

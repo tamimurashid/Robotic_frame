@@ -105,6 +105,14 @@ class Robotic_frame{
 
         void right(uint8_t _speed);
 
+        void upright(uint8_t _speed);
+
+        void upleft(uint8_t _speed);
+
+        void downright(uint8_t _speed);
+
+        void downleft(uint8_t _speed);
+
         void bt_control();
 
         void stop();

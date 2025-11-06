@@ -87,7 +87,7 @@ void Robotic_frame::attachMotor(uint8_t _in1, uint8_t _in2, uint8_t _enA, uint8_
 void Robotic_frame::begin(){
 
    _botSerial.begin(botbaudRate);
-   Serial.begin(9600);
+
 
    if(motorDriverType == MOTOR_SHIELD){
     setMotor(motor_1, motor_2, motor_3, motor_4);
@@ -214,6 +214,7 @@ void Robotic_frame::stop(){
         motor3 ->run(RELEASE);
         motor4 ->run(RELEASE);
     } else if(motorDriverType == L298N_MOTOR){
+        analogWrite(enA, 0); analogWrite(enB, 0);
         digitalWrite(in1, LOW);
         digitalWrite(in2, LOW);
         digitalWrite(in3, LOW);
@@ -226,9 +227,9 @@ void Robotic_frame::stop(){
 void Robotic_frame::bt_control(){
     if(_botSerial.available()){
         command = _botSerial.read();
-        Serial.print("The received command is: ");
+        Serial.print("The receive command is: ");
         Serial.println(command);
-
+        
         switch (command)
         {
             case '1': speed = 28; break;
