@@ -321,8 +321,18 @@ void Robotic_frame::stop(){
 void Robotic_frame::horn(uint8_t buzzerpin){
     _buzzerpin = buzzerpin;
 
-    
+    pinMode(_buzzerpin, OUTPUT);
 
+    // Alternate between 500 Hz and 600 Hz quickly
+  for (int i = 0; i < 5; i++) {
+    tone(_buzzerpin, 500); 
+    delay(200);
+    tone(_buzzerpin, 600);
+    delay(200);
+  }
+  
+  noTone(_buzzerpin);
+  delay(1000); // wait before next horn
 }
 void Robotic_frame::bt_control(){
     if(_botSerial.available()){
