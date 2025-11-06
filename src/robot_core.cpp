@@ -87,6 +87,7 @@ void Robotic_frame::attachMotor(uint8_t _in1, uint8_t _in2, uint8_t _enA, uint8_
 void Robotic_frame::begin(){
 
    _botSerial.begin(botbaudRate);
+   Serial.begin(9600);
 
    if(motorDriverType == MOTOR_SHIELD){
     setMotor(motor_1, motor_2, motor_3, motor_4);
@@ -97,6 +98,11 @@ void Robotic_frame::begin(){
    
 
    
+}
+
+
+void Robotic_frame::bt_control(){
+    
 }
 
 void Robotic_frame::forward(uint8_t _speed){
