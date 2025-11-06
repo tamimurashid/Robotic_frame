@@ -38,17 +38,19 @@
 #define RX 2
 #define TX 3
 #define bot_baud 115400
-#define motor1  1
-#define motor2  2
-#define motor3  3
+#define motor1  8
+#define motor2  7
+#define motor3  5
 #define motor4  4
+#define speed1 9
+#define speed2 10
 
 
 
-Robotic_frame mybot(RX, TX, 115400);
+Robotic_frame mybot(RX, TX, 115200);
 void setup() {
-  mybot.setMotorDriver(MOTOR_SHIELD);
-  mybot.setMotor(motor1, motor2,  motor3, motor4);
+  mybot.setMotorDriver(L298N_MOTOR);
+  mybot.attachMotor(motor1, motor2, speed1, motor3, motor4, speed2);
   mybot.begin();
  
 }
@@ -62,6 +64,10 @@ void loop() {
   mybot.left(255);
   delay(1000);
   mybot.right(255);
+
+  
+
+  
 
   
   
