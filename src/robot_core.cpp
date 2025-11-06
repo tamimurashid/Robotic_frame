@@ -325,7 +325,7 @@ void Robotic_frame::bt_control(){
         Serial.println(command);
         
         switch (command)
-        {    // Speed gears , this works for some apps.
+        {    // Speed gears control, this works for some apps.
             case '1': speed = 28; break;
             case '2': speed = 56; break;
             case '3': speed = 85; break;
