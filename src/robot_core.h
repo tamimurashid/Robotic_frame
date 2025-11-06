@@ -118,9 +118,13 @@ class Robotic_frame{
         void horn(uint8_t buzzerpin);
         void no_horn();
 
-        void frontlight(uint8_t frontled);
+        void frontlight_on(uint8_t frontled);
 
-        void backlight(uint8_t backled);
+        void frontlight_off(uint8_t frontled);
+
+        void backlight_on(uint8_t backled);
+
+        void backlight_off(uint8_t backled);
 
         void stop();
         char command;

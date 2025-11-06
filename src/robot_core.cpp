@@ -338,6 +338,17 @@ void Robotic_frame::no_horn(){
     noTone(_buzzerpin);
 }
 
+void Robotic_frame::frontlight_on(uint8_t frontled){
+    _frontled = frontled;
+    pinMode(_frontled, OUTPUT);
+    digitalWrite(_frontled, HIGH);
+}
+
+void Robotic_frame::frontlight_off(uint8_t frontled){
+    _frontled = frontled;
+    digitalWrite(_frontled, LOW);
+}
+
 void Robotic_frame::bt_control(){
     if(_botSerial.available()){
         command = _botSerial.read();
