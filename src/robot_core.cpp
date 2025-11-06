@@ -408,6 +408,15 @@ void Robotic_frame::bt_control(){
             case 'V': horn(_buzzerpin);
             case 'v': no_horn();
 
+            // For light front and back if available 
+            case 'W': frontlight_on();
+            case 'w': frontlight_off();
+            case 'U': backlight_on();
+            case 'u': backlight_off();
+
+
+
+
 
             default: stop(); break;
            
