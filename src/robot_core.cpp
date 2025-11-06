@@ -370,6 +370,12 @@ void Robotic_frame::bt_control(){
             case 'H': downleft(speed); break;
             case 'J': downright(speed); break;
 
+
+            // For horn if available 
+            case 'V': horn(_buzzerpin);
+            case 'v': no_horn();
+
+
             default: stop(); break;
            
         }
