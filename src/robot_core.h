@@ -116,6 +116,7 @@ class Robotic_frame{
         void bt_control();
 
         void horn(uint8_t buzzerpin);
+        void no_horn();
 
         void stop();
         char command;
