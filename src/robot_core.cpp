@@ -206,6 +206,29 @@ void Robotic_frame::right(uint8_t _speed){
     
  
 }
+void Robotic_frame::upright(uint8_t _speed){
+    speed = _speed;
+    if(motorDriverType == MOTOR_SHIELD){
+        motor1->setSpeed(speed);    // left motors
+        motor2->setSpeed(speed/2);  // slow down right side
+        motor3->setSpeed(speed);    
+        motor4->setSpeed(speed/2);
+
+        motor1->run(FORWARD);
+        motor2->run(FORWARD);
+        motor3->run(FORWARD);
+        motor4->run(FORWARD);
+    }
+    else if(motorDriverType == L298N_MOTOR){
+        analogWrite(enA, speed);   // left motors
+        analogWrite(enB, speed/2); // right motors
+        digitalWrite(in1,HIGH);
+        digitalWrite(in2,LOW);
+        digitalWrite(in3,HIGH);
+        digitalWrite(in4,LOW);
+    }
+}
+
 
 void Robotic_frame::stop(){
     if(motorDriverType == MOTOR_SHIELD){
