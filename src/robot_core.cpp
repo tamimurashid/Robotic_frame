@@ -301,8 +301,6 @@ void Robotic_frame::downleft(uint8_t _speed){
 }
 
 
-
-
 void Robotic_frame::stop(){
     if(motorDriverType == MOTOR_SHIELD){
         motor1 ->run(RELEASE);
@@ -327,7 +325,7 @@ void Robotic_frame::bt_control(){
         Serial.println(command);
         
         switch (command)
-        {
+        {    // Speed gears , this works for some apps.
             case '1': speed = 28; break;
             case '2': speed = 56; break;
             case '3': speed = 85; break;
@@ -337,11 +335,20 @@ void Robotic_frame::bt_control(){
             case '7': speed = 199; break;
             case '8': speed = 227; break;
             case '9': speed = 255; break;
+              
 
+            // Normal movement forward, backward, left and right 
             case 'F': forward(speed); break;
             case 'B': backward(speed); break;
             case 'L': left(speed); break;
             case 'R': right(speed); break;
+            
+
+            // diagonal movement  upleft, upright, downleft  and downright
+            case 'G': upleft(speed); break;
+            case 'I': upright(speed); break;
+            case 'H': downleft(speed); break;
+            case 'J': downright(speed); break;
 
             default: stop(); break;
            

@@ -52,7 +52,7 @@ enum MotorDriverType{
 class Robotic_frame{
     private:
         uint8_t  RX, TX, motor_1, motor_2, motor_3, motor_4;
-        uint8_t speed;
+        uint8_t speed = 255; // set speed to maximum if in motor driver L298N enA and enB is not used incase 
         unsigned long  botbaudRate;
 
         SoftwareSerial _botSerial;
