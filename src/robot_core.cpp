@@ -231,11 +231,22 @@ void Robotic_frame::bt_control(){
 
         switch (command)
         {
-        case 'F': forward(speed); break;
-        case 'B': backward(speed); break;
-        case 'L': left(speed); break;
-        case 'R': right(speed); break;
-        default: stop(); break;
+            case '1': speed = 28; break;
+            case '2': speed = 56; break;
+            case '3': speed = 85; break;
+            case '4': speed = 113; break;
+            case '5': speed = 142; break;
+            case '6': speed = 170; break;
+            case '7': speed = 199; break;
+            case '8': speed = 227; break;
+            case '9': speed = 255; break;
+
+            case 'F': forward(speed); break;
+            case 'B': backward(speed); break;
+            case 'L': left(speed); break;
+            case 'R': right(speed); break;
+
+            default: stop(); break;
            
         }
 
