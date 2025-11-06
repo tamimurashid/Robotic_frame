@@ -318,6 +318,12 @@ void Robotic_frame::stop(){
  
 }
 
+void Robotic_frame::horn(uint8_t buzzerpin){
+    _buzzerpin = buzzerpin;
+
+    
+
+}
 void Robotic_frame::bt_control(){
     if(_botSerial.available()){
         command = _botSerial.read();
