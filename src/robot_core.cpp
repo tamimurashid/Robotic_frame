@@ -338,14 +338,25 @@ void Robotic_frame::no_horn(){
     noTone(_buzzerpin);
 }
 
-void Robotic_frame::frontlight_on(uint8_t frontled){
+void Robotic_frame::setFrontlight(uint8_t frontled){
     _frontled = frontled;
     pinMode(_frontled, OUTPUT);
+
+}
+
+void Robotic_frame::setBacklight(uint8_t backled){
+    _backled = backled;
+    pinMode(_backled, OUTPUT);
+
+}
+
+void Robotic_frame::frontlight_on(){
+    
     digitalWrite(_frontled, HIGH);
 }
 
-void Robotic_frame::frontlight_off(uint8_t frontled){
-    _frontled = frontled;
+void Robotic_frame::frontlight_off(){
+
     digitalWrite(_frontled, LOW);
 }
 
