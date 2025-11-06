@@ -108,6 +108,7 @@ class Robotic_frame{
         void bt_control();
 
         void stop();
+        char command;
     
 
    

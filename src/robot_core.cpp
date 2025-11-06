@@ -101,10 +101,6 @@ void Robotic_frame::begin(){
 }
 
 
-void Robotic_frame::bt_control(){
-    
-}
-
 void Robotic_frame::forward(uint8_t _speed){
     speed = _speed;
 
@@ -224,7 +220,26 @@ void Robotic_frame::stop(){
         digitalWrite(in4, LOW);
 
     }
+ 
+}
 
+void Robotic_frame::bt_control(){
+    if(_botSerial.available()){
+        command = _botSerial.read();
+        Serial.print("The received command is: ");
+        Serial.println(command);
+
+        switch (command)
+        {
+        case 'F': forward(speed); break;
+        case 'B': backward(speed); break;
+        case 'L': left(speed); break;
+        case 'R': right(speed); break;
+        default: stop(); break;
+           
+        }
+
+    }
     
 }
 
