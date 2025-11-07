@@ -358,6 +358,12 @@ long Sensors::readDistance(){
 
 }
 
+void Robotic_frame::obstacle_control(){
+    int distanceValue = readDistance();
+
+    
+}
+
 void Robotic_frame::bt_control(){
     if(_botSerial.available()){
         command = _botSerial.read();

@@ -37,6 +37,7 @@
 #ifndef ROBOT_FRAME_H
 #define ROBOT_FRAME_H
 
+#include "sensors.h"
 #include <Arduino.h>
 #include <SoftwareSerial.h> 
 #include <AFMotor.h> 
@@ -52,7 +53,7 @@ enum MotorDriverType{
     L298N_MOTOR 
 };
 
-class Robotic_frame{
+class Robotic_frame : public Sensors{
     private:
         uint8_t  RX, TX, motor_1, motor_2, motor_3, motor_4, _buzzerpin, _frontled, _backled;
         uint8_t _servoPin, _angle;
