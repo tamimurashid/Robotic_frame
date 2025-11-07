@@ -366,13 +366,25 @@ void Robotic_frame::obstacle_control(){
 
     }
     stop();
+
+      //scan left 
     writeServo(0);
     delay(500);
-    
     long leftdistance = readDistance();
 
-    writeServo(90);
+
+       //scan right
+    writeServo(180);
     delay(500);
+    long rightdistance = readDistance();
+    
+
+    writeServo(90);
+    delay(300);
+
+    if(leftdistance > rightdistance && leftdistance > SAFE_DISTANCE){
+        left(speed);
+    }
 
 
 
