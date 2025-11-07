@@ -387,8 +387,25 @@ void Sensors::ultrasonic(uint8_t trigpin, uint8_t echopin){
     _trigpin = trigpin;
     _echopin = echopin;
 
-    pinMode(_trigpin, INPUT);
-    pinMode(_echopin, OUTPUT);
+    pinMode(_trigpin, OUTPUT);
+    pinMode(_echopin, INPUT);
+
+}
+
+long Sensors::readDistance(){
+    digitalWrite(_trigpin, LOW);
+    delayMicroseconds(2);
+
+    digitalWrite(_trigpin, HIGH);
+    delayMicroseconds(10);
+
+    digitalWrite(_trigpin, LOW);
+
+    long duration = pulseIn(_echopin, HIGH);
+
+    long distance = duration * 0.034 / 2;
+
+    return distance;
 
 }
 
