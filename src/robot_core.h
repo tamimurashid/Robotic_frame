@@ -42,6 +42,7 @@
 #include <SoftwareSerial.h> 
 #include <AFMotor.h> 
 #include <Servo.h>
+#define SAFE_DISTANCE 15
 
 // Library for adafruit motor driver 
 // #define MOTOR_SHIELD 1

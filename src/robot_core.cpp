@@ -359,7 +359,18 @@ long Sensors::readDistance(){
 }
 
 void Robotic_frame::obstacle_control(){
-    int distanceValue = readDistance();
+    long frontdistance  = readDistance();
+    if(frontdistance > SAFE_DISTANCE){
+        forward(speed);
+        return;
+
+    }
+    stop();
+    writeServo(0);
+
+
+
+
 
     
 }
