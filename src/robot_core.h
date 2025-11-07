@@ -111,6 +111,7 @@ class Robotic_frame{
         void downright(uint8_t _speed);
         void downleft(uint8_t _speed);
         void bt_control();
+        void obstacle_control();
         void horn(uint8_t buzzerpin);
         void no_horn();
         void setFrontlight(uint8_t frontled);
