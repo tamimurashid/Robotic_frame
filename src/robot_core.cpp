@@ -36,6 +36,7 @@
 
 
 #include "robot_core.h"
+#include "sensors.h"
 
 Robotic_frame::Robotic_frame(uint8_t _RX, uint8_t _TX, unsigned long  _botbaudRate) : RX(_RX), TX(_TX), 
 botbaudRate(_botbaudRate), _botSerial(_RX, _TX), motor1(nullptr), motor2(nullptr), motor3(nullptr), motor4(nullptr){}
@@ -380,6 +381,15 @@ void Robotic_frame:: setServo(uint8_t servoPin){
 void Robotic_frame:: writeServo(uint8_t angle){
     _angle = angle;
     _servo.write(_angle);
+}
+
+void Sensors::ultrasonic(uint8_t trigpin, uint8_t echopin){
+    _trigpin = trigpin;
+    _echopin = echopin;
+
+    pinMode(_trigpin, INPUT);
+    pinMode(_echopin, OUTPUT);
+
 }
 
 void Robotic_frame::bt_control(){
