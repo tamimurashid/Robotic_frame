@@ -103,48 +103,25 @@ class Robotic_frame{
 
 
         void forward(uint8_t _speed);
-
         void backward(uint8_t  _speed);
-
         void left(uint8_t _speed);
-
         void right(uint8_t _speed);
-
         void upright(uint8_t _speed);
-
         void upleft(uint8_t _speed);
-
         void downright(uint8_t _speed);
-
         void downleft(uint8_t _speed);
-
         void bt_control();
-
         void horn(uint8_t buzzerpin);
-
         void no_horn();
-
         void setFrontlight(uint8_t frontled);
-
         void setBacklight(uint8_t backled);
-
         void frontlight_on();
-
         void frontlight_off();
-
         void backlight_on();
-
         void backlight_off();
-
-
         void setServo(uint8_t servoPin);
-
-        void writeServo()
-
-
-
+        void writeServo(uint8_t angle);
         void stop();
-
         char command;
     
 
