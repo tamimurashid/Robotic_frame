@@ -374,7 +374,12 @@ void Robotic_frame::backlight_on(){
 void Robotic_frame:: setServo(uint8_t servoPin){
     _servoPin = servoPin;
     _servo.attach(_servoPin);
+}
 
+
+void Robotic_frame:: writeServo(uint8_t angle){
+    _angle = angle;
+    _servo.write(_angle);
 }
 
 void Robotic_frame::bt_control(){
