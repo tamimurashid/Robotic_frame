@@ -39,7 +39,10 @@
 
 #include <Arduino.h>
 #include <SoftwareSerial.h> 
-#include <AFMotor.h> // Library for adafruit motor driver 
+#include <AFMotor.h> 
+#include <Servo.h>
+
+// Library for adafruit motor driver 
 // #define MOTOR_SHIELD 1
 // #define L298N_MOTOR 2
 
@@ -56,6 +59,7 @@ class Robotic_frame{
         unsigned long  botbaudRate;
 
         SoftwareSerial _botSerial;
+        Servo _servo;
         MotorDriverType  motorDriverType;
 
 
@@ -132,7 +136,7 @@ class Robotic_frame{
         void backlight_off();
 
         void stop();
-        
+
         char command;
     
 
