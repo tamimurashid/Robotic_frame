@@ -384,6 +384,13 @@ void Robotic_frame::obstacle_control(){
 
     if(leftdistance > rightdistance && leftdistance > SAFE_DISTANCE){
         left(speed);
+        delay(TURN_DELAY);
+        forward(speed);
+    }else if(rightdistance > leftdistance && rightdistance > SAFE_DISTANCE){
+        right(speed);
+        delay(TURN_DELAY);
+        forward(speed);
+
     }
 
 
