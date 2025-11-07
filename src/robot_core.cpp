@@ -41,32 +41,26 @@
 Robotic_frame::Robotic_frame(uint8_t _RX, uint8_t _TX, unsigned long  _botbaudRate) : RX(_RX), TX(_TX), 
 botbaudRate(_botbaudRate), _botSerial(_RX, _TX), motor1(nullptr), motor2(nullptr), motor3(nullptr), motor4(nullptr){}
 
-
 Robotic_frame::~Robotic_frame() {
     delete motor1;
     delete motor2;
     delete motor3;
     delete motor4;
-
     // Optional: set pointers to nullptr (safe practice)
     motor1 = nullptr;
     motor2 = nullptr;
     motor3 = nullptr;
     motor4 = nullptr;
 }
-
-
 void Robotic_frame::setMotor(uint8_t _motor_1, uint8_t _motor_2, uint8_t _motor_3, uint8_t _motor_4){
     motor_1 = _motor_1;
     motor_2 = _motor_2;
     motor_3 = _motor_3;
     motor_4 = _motor_4;
-
    delete motor1; motor1 = new  AF_DCMotor(motor_1);
    delete motor2; motor2 = new  AF_DCMotor(motor_2);
    delete motor3; motor3 = new  AF_DCMotor(motor_3);
    delete motor4; motor4 = new  AF_DCMotor(motor_4);
-    
 }
 void Robotic_frame::attachMotor(uint8_t _in1, uint8_t _in2, uint8_t _enA, uint8_t _in3, uint8_t _in4, uint8_t _enB){
     in1 = _in1;
@@ -75,48 +69,32 @@ void Robotic_frame::attachMotor(uint8_t _in1, uint8_t _in2, uint8_t _enA, uint8_
     in4 = _in4;
     enA = _enA;
     enB = _enB;
-
     pinMode(in1, OUTPUT);
     pinMode(in2, OUTPUT);
     pinMode(in3, OUTPUT);
     pinMode(in4, OUTPUT);
     pinMode(enA, OUTPUT);
     pinMode(enB, OUTPUT);
-
 }
-
 void Robotic_frame::begin(){
-
    _botSerial.begin(botbaudRate);
-
-
    if(motorDriverType == MOTOR_SHIELD){
     setMotor(motor_1, motor_2, motor_3, motor_4);
-    
    } else if (motorDriverType == L298N_MOTOR){
     attachMotor(in1, in2, enA, in3, in4, enB);
    }
-   
-
-   
 }
-
-
 void Robotic_frame::forward(uint8_t _speed){
     speed = _speed;
-
-
     if(motorDriverType == MOTOR_SHIELD){
         motor1 ->setSpeed(speed);
         motor2 ->setSpeed(speed);
         motor3 ->setSpeed(speed);
         motor4 ->setSpeed(speed);
-
         motor1 ->run(FORWARD);
         motor2 ->run(FORWARD);
         motor3 ->run(FORWARD);
         motor4 ->run(FORWARD);
-
     }else if(motorDriverType == L298N_MOTOR){
         analogWrite(enA, speed);
         analogWrite(enB, speed);
@@ -125,24 +103,19 @@ void Robotic_frame::forward(uint8_t _speed){
         digitalWrite(in3, HIGH);
         digitalWrite(in4, LOW);
 
-    }
-    
+    } 
 }
-
 void Robotic_frame::backward(uint8_t _speed){
     speed = _speed;
-
     if(motorDriverType == MOTOR_SHIELD){
         motor1 ->setSpeed(speed);
         motor2 ->setSpeed(speed);
         motor3 ->setSpeed(speed);
         motor4 ->setSpeed(speed);
-
         motor1 ->run(BACKWARD);
         motor2 ->run(BACKWARD);
         motor3 ->run(BACKWARD);
         motor4 ->run(BACKWARD);
-
     }else if(motorDriverType == L298N_MOTOR){
         analogWrite(enA, speed);
         analogWrite(enB, speed);
@@ -150,26 +123,19 @@ void Robotic_frame::backward(uint8_t _speed){
         digitalWrite(in2, HIGH);
         digitalWrite(in3, LOW);
         digitalWrite(in4, HIGH);
-
-    }
-
-    
+    }  
 }
-
 void Robotic_frame::left(uint8_t _speed){
     speed = _speed;
-
     if(motorDriverType == MOTOR_SHIELD){
         motor1 ->setSpeed(speed);
         motor2 ->setSpeed(speed);
         motor3 ->setSpeed(speed);
         motor4 ->setSpeed(speed);
-
         motor1 ->run(FORWARD);
         motor2 ->run(FORWARD);
         motor3 ->run(BACKWARD);
         motor4 ->run(BACKWARD);
-
     } else if(motorDriverType == L298N_MOTOR){
         analogWrite(enA, speed);
         analogWrite(enB, speed);
@@ -177,25 +143,19 @@ void Robotic_frame::left(uint8_t _speed){
         digitalWrite(in2, HIGH);
         digitalWrite(in3, HIGH);
         digitalWrite(in4, LOW);
-    }
-
-    
+    }  
 }
-
 void Robotic_frame::right(uint8_t _speed){
     speed = _speed;
-
     if(motorDriverType == MOTOR_SHIELD){
         motor1 ->setSpeed(speed);
         motor2 ->setSpeed(speed);
         motor3 ->setSpeed(speed);
         motor4 ->setSpeed(speed);
-
         motor1 ->run(BACKWARD);
         motor2 ->run(BACKWARD);
         motor3 ->run(FORWARD);
         motor4 ->run(FORWARD);
-
     } else if(motorDriverType == L298N_MOTOR){
         analogWrite(enA, speed);
         analogWrite(enB, speed);
@@ -204,10 +164,7 @@ void Robotic_frame::right(uint8_t _speed){
         digitalWrite(in3, LOW);
         digitalWrite(in4, HIGH);
     }
-    
- 
 }
-
 void Robotic_frame::upright(uint8_t _speed){
     speed = _speed;
     if(motorDriverType == MOTOR_SHIELD){
@@ -215,7 +172,6 @@ void Robotic_frame::upright(uint8_t _speed){
         motor2->setSpeed(speed/2);  // slow down right side
         motor3->setSpeed(speed);    
         motor4->setSpeed(speed/2);
-
         motor1->run(FORWARD);
         motor2->run(FORWARD);
         motor3->run(FORWARD);
@@ -230,7 +186,6 @@ void Robotic_frame::upright(uint8_t _speed){
         digitalWrite(in4,LOW);
     }
 }
-
 void Robotic_frame::upleft(uint8_t _speed){
     speed = _speed;
     if(motorDriverType == MOTOR_SHIELD){
@@ -238,7 +193,6 @@ void Robotic_frame::upleft(uint8_t _speed){
         motor2->setSpeed(speed);  // right side
         motor3->setSpeed(speed/2);    
         motor4->setSpeed(speed);
-
         motor1->run(FORWARD);
         motor2->run(FORWARD);
         motor3->run(FORWARD);
@@ -253,8 +207,6 @@ void Robotic_frame::upleft(uint8_t _speed){
         digitalWrite(in4,LOW);
     }
 }
-
-
 void Robotic_frame::downright(uint8_t _speed){
     speed = _speed;
     if(motorDriverType == MOTOR_SHIELD){
@@ -277,7 +229,6 @@ void Robotic_frame::downright(uint8_t _speed){
         digitalWrite(in4, HIGH);
     }
 }
-
 void Robotic_frame::downleft(uint8_t _speed){
     speed = _speed;
     if(motorDriverType == MOTOR_SHIELD){
@@ -300,8 +251,6 @@ void Robotic_frame::downleft(uint8_t _speed){
         digitalWrite(in4, HIGH);
     }
 }
-
-
 void Robotic_frame::stop(){
     if(motorDriverType == MOTOR_SHIELD){
         motor1 ->run(RELEASE);
@@ -414,7 +363,6 @@ void Robotic_frame::bt_control(){
         command = _botSerial.read();
         Serial.print("The receive command is: ");
         Serial.println(command);
-        
         switch (command)
         {    // Speed gears control, this works for some apps.
             case '1': speed = 28; break;
@@ -426,42 +374,28 @@ void Robotic_frame::bt_control(){
             case '7': speed = 199; break;
             case '8': speed = 227; break;
             case '9': speed = 255; break;
-              
-
             // Normal movement forward, backward, left and right 
             case 'F': forward(speed); break;
             case 'B': backward(speed); break;
             case 'L': left(speed); break;
             case 'R': right(speed); break;
-            
-
             // diagonal movement  upleft, upright, downleft  and downright
             case 'G': upleft(speed); break;
             case 'I': upright(speed); break;
             case 'H': downleft(speed); break;
             case 'J': downright(speed); break;
-
-
             // For horn if available 
             case 'V': horn(_buzzerpin);
             case 'v': no_horn();
-
             // For light front and back if available 
             case 'W': frontlight_on();
             case 'w': frontlight_off();
             case 'U': backlight_on();
             case 'u': backlight_off();
-
-
-
-
-
             default: stop(); break;
            
         }
-
-    }
-    
+    }   
 }
 
 
