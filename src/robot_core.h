@@ -123,13 +123,9 @@ class Robotic_frame{
         void writeServo(uint8_t angle);
         void stop();
         char command;
-    
-
-   
 
 
 };
-
 
 
 
