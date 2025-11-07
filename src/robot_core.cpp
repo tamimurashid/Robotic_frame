@@ -390,6 +390,23 @@ void Robotic_frame::obstacle_control(){
         right(speed);
         delay(TURN_DELAY);
         forward(speed);
+    }else{
+        backward(speed);
+        delay(500);
+
+        for (int angle = 0; angle <= 180; angle += 15) {
+            writeServo(angle);
+            delay(200);
+            long d = readDistance();
+            if (d > SAFE_DISTANCE) {
+                // Turn robot toward this direction
+                if (angle < 90) left(speed);
+                else if (angle > 90) right(speed);
+                delay(TURN_DELAY);
+                forward(speed);
+                break;
+            }
+        }
 
     }
 
