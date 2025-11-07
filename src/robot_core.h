@@ -121,6 +121,7 @@ class Robotic_frame{
         void backlight_off();
         void setServo(uint8_t servoPin);
         void writeServo(uint8_t angle);
+
         void stop();
         char command;
 
