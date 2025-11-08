@@ -410,9 +410,6 @@ void Robotic_frame::obstacle_control(){
 
     }
 
-
-
-
     
 }
 

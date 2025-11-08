@@ -37,7 +37,7 @@
 
 #define RX 2
 #define TX 3
-#define bot_baud 115400
+#define bot_baud 9600
 #define motor1  8
 #define motor2  7
 #define motor3  5
@@ -49,7 +49,7 @@
 
 
 
-Robotic_frame mybot(RX, TX, 115200);
+Robotic_frame mybot(RX, TX, bot_baud);
 void setup() {
   
   Serial.begin(9600);
