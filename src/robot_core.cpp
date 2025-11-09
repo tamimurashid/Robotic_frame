@@ -412,7 +412,6 @@ void Robotic_frame::obstacle_control(){
 
     
 }
-
 void Robotic_frame::bt_control(){
     if(_botSerial.available()){
         command = _botSerial.read();
