@@ -407,10 +407,7 @@ void Robotic_frame::obstacle_control(){
                 break;
             }
         }
-
-    }
-
-    
+    }  
 }
 void Robotic_frame::bt_control(){
     if(_botSerial.available()){
