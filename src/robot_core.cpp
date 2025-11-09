@@ -363,10 +363,8 @@ void Robotic_frame::obstacle_control(){
     if(frontdistance > SAFE_DISTANCE){
         forward(speed);
         return;
-
     }
     stop();
-
       //scan left 
     writeServo(0);
     delay(500);
